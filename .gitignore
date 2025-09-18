@@ -12,6 +12,10 @@
 /package-lock.json
 /yarn.lock
 
+# Ignore node_modules in subfolders (FrontEnd, BackEnd)
+FrontEnd/node_modules/
+BackEnd/node_modules/
+
 # Environment files
 /.env
 
