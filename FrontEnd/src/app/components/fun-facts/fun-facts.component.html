@@ -1,27 +1,32 @@
-<p>fun-fact works!</p>
-<p>fun-fact works!</p>
 <div class="fun-facts-grid">
-    <div class="example-action-buttons mb-3">
-        <button mat-raised-button color="primary" (click)="accordion().openAll()">Expand All</button>
-        <button mat-raised-button color="accent" (click)="accordion().closeAll()">Collapse All</button>
+    <div class="example-action-buttons mb-3" *ngIf="funFacts.length > 0">
+        <button mat-raised-button color="primary" (click)="accordion.openAll()">Expand All</button>
+        <button mat-raised-button color="accent" (click)="accordion.closeAll()">Collapse All</button>
     </div>
-    <mat-accordion #matAccordion="matAccordion" multi class="mat-elevation-z2">
+    
+    <mat-accordion #accordion="matAccordion" multi class="mat-elevation-z2" *ngIf="funFacts.length > 0">
         <mat-expansion-panel *ngFor="let fact of funFacts">
+            <div class="fact-header" *ngIf="funFacts.length > 0">
+                <div class="fact-col">ID</div>
+                <div class="fact-col">Category</div>
+                <div class="fact-col">Fun Fact</div>
+                <div class="fact-col">Date Created</div>
+            </div>
             <mat-expansion-panel-header>
                 <mat-panel-title>
                     {{ fact.fact }}
                 </mat-panel-title>
-                <mat-panel-description>
-                    {{ fact.category || 'General' }}
-                </mat-panel-description>
+                
             </mat-expansion-panel-header>
-            <div class="fact-details">
-                <strong>ID:</strong> {{ fact.id }}<br>
-                <strong>Created:</strong> {{ fact.createdAt | date:'medium' }}
-            </div>
+                <div class="fact-details">
+                    <div class="fact-col">{{ fact.id }}</div>
+                    <div class="fact-col">{{ fact.category || 'General' }}</div>
+                    <div class="fact-col">{{ fact.fact }}</div>
+                    <div class="fact-col">{{ fact.createdAt }}</div>
+                </div>
         </mat-expansion-panel>
     </mat-accordion>
-    <ng-template #noFacts>
+    <ng-container *ngIf="funFacts.length === 0">
         <p>No fun facts found.</p>
-    </ng-template>
+    </ng-container>
 </div>
