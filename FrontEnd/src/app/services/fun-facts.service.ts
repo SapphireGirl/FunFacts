@@ -18,6 +18,7 @@ export class FunFactsService {
     constructor(private http: HttpClient) { }
 
     getAll(): Observable<FunFact[]> {
+        console.log(('apiUrl: ' + this.apiUrl));
         return this.http.get<FunFact[]>(this.apiUrl);
     }
 
